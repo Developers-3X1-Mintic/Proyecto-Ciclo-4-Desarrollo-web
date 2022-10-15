@@ -70,6 +70,6 @@ Cuando intente ingresar a la aplicación mediante una URL
 Entonces podré interactuar con la aplicación web
 
 
-mi primer commit para sprint 1 del ciclo 4
+mi primer commit para sprint 1 del ciclo 4 agregado por Juan Zorro
 
 realizando un cambio para el primer Sprint 
