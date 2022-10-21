@@ -1,13 +1,26 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+body, html {
+  background-color: aliceblue;
+  height: 100%;
+  margin:0;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  #root {
+    min-height: 100%;
+    width: 100%;
+  }
+  
+  header, footer {
+      background-color: #1F262D;
+      color:aliceblue;
+      text-align: center;
+  }
+  
+  .logo_pri {
+      width: 90%;
+      max-width: 220px;
+  }
+  
+  .txt_derechos {
+      font-size: .7rem;
+      opacity: .5;
+  }
