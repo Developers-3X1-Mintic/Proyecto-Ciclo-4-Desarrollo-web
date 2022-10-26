@@ -2,19 +2,19 @@
   "id":104,
   "imagen":"juguete_01.jpg",
   "cantidad":10,
-  "nombreProducto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete de carrito",
   "valor":32000
 },{
   "id":105,
   "imagen":"juguete_02.jpg",
   "cantidad":10,
-  "nombreProducto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete didáctico",
   "valor":32000
 },
 {
   "id":106,
   "imagen":"juguete_03.jpg",
   "cantidad":10,
-  "nombreProducto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete trensito constructor",
   "valor":32000
 }]

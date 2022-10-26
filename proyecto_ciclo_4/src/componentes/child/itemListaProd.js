@@ -3,13 +3,13 @@ import React from "react";
 function ItemListaProd (propiedades) {
     return (
         <tr>
-            <td>
+            <td className="itemCentrado">
                 <img src={propiedades.imagen} width={100}/>
             </td>
-            <td>{propiedades.cantidad}</td>
+            <td className="itemCentrado">{propiedades.cantidad}</td>
             <td>{propiedades.producto}</td>
-            <td>$ {propiedades.valor}</td>
-            <td>$ {propiedades.valor*propiedades.cantidad}</td>
+            <td className="itemDerecha">$ {propiedades.valor}</td>
+            <td className="itemDerecha">$ {propiedades.valor*propiedades.cantidad}</td>
         </tr>
          
     )

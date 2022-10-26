@@ -1,0 +1,12 @@
+.itemCentrado {
+    text-align: center;
+}
+
+.itemDerecha {
+    text-align: right;
+}
+
+.tablaProductos td {
+    vertical-align: middle;
+    padding: 5px 15px;
+}

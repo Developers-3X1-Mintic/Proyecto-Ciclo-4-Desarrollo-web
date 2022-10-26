@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ItemListaProd from "./child/itemListaProd";
 import Productos from "../assets/productos.json";
+import "../assets/css/listaProdt.css"
+
 const ruta = require.context("../assets/img/", true);
 
 function ListaProdCliente() {
@@ -12,14 +14,14 @@ function ListaProdCliente() {
                 <h1 className="text-center">Lista de productos</h1>
             </div>
             <div className="p-3">
-                <table className="table w-100">
+                <table className="table w-100 tablaProductos">
                     <thead className="table-dark">
                         <tr>
-                            <td>Imagen</td>
-                            <td>Cantidad</td>
-                            <td>Producto</td>
-                            <td>Valor</td>
-                            <td>Total</td>
+                            <td className="itemCentrado">Imagen</td>
+                            <td className="itemCentrado">Cantidad</td>
+                            <td className="itemCentrado">Producto</td>
+                            <td className="itemCentrado">Valor</td>
+                            <td className="itemCentrado">Total</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,8 +38,8 @@ function ListaProdCliente() {
                 </table>
             </div>
             <div className="text-end">
-                <button type="button" className="btn btn-warning">Finalizar Compra</button>
-                <button type="button" className="btn btn-warning ms-3">Cancelar</button>
+                <button type="button" className="btn btn-warning"><b>Finalizar Compra</b></button>
+                <button type="button" className="btn btn-warning ms-3"><b>Cancelar</b></button>
             </div>
         </div>
     )
