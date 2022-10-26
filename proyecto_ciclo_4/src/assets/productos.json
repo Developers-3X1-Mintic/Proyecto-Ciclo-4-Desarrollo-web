@@ -1,17 +1,20 @@
 [{
-  "imagen":"corazon.jpg",
+  "id":104,
+  "imagen":"juguete_01.jpg",
   "cantidad":10,
-  "nombre-producto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete de ccorazon",
   "valor":32000
 },{
-  "imagen":"corazon.jpg",
+  "id":105,
+  "imagen":"juguete_02.jpg",
   "cantidad":10,
-  "nombre-producto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete de ccorazon",
   "valor":32000
 },
 {
-  "imagen":"corazon.jpg",
+  "id":106,
+  "imagen":"juguete_03.jpg",
   "cantidad":10,
-  "nombre-producto":"Juguete de ccorazon",
+  "nombreProducto":"Juguete de ccorazon",
   "valor":32000
 }]

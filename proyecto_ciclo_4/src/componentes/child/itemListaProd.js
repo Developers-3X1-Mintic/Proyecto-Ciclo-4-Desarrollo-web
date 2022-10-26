@@ -4,7 +4,7 @@ function ItemListaProd (propiedades) {
     return (
         <tr>
             <td>
-                <img src={propiedades.imagen} width={200}/>
+                <img src={propiedades.imagen} width={100}/>
             </td>
             <td>{propiedades.cantidad}</td>
             <td>{propiedades.producto}</td>
