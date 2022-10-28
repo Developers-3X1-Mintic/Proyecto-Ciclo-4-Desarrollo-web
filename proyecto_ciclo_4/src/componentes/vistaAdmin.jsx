@@ -15,6 +15,16 @@ function VistaAdmin() {
     document.getElementById("btnListProd").className += " active"
   }
 
+  function cambiarCuerpoModificar() {
+    setCuerpo(cuerpo = <div>Modificar producto</div> );
+    let activos = document.getElementsByClassName("nav-link");
+    for (var i = 0; i < activos.length; i++) {
+      activos[i].classList.remove("active");
+    }
+
+    document.getElementById("btnListProd").className += " active"
+  }
+
   function cambiarCuerpoVentas() {
     setCuerpo(cuerpo = <div>Lista de Ventas</div> );
     let activos = document.getElementsByClassName("nav-link");
@@ -38,6 +48,7 @@ function VistaAdmin() {
               <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                   <button className="nav-link boton-menu" onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
+                  <button className="nav-link boton-menu" onClick={cambiarCuerpoModificar} id="btnVentas" >Modificar producto</button>
                   <button className="nav-link boton-menu" onClick={cambiarCuerpoVentas} id="btnVentas" >Lista ventas</button>
                 </div>
               </div>

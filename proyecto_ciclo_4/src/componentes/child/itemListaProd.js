@@ -3,13 +3,14 @@ import React from "react";
 function ItemListaProd (propiedades) {
     return (
         <tr>
-            <td className="itemCentrado">
+            <td>
                 <img src={propiedades.imagen} width={100}/>
             </td>
-            <td className="itemCentrado">{propiedades.cantidad}</td>
+            <td>{propiedades.cantidad}</td>
             <td>{propiedades.producto}</td>
-            <td className="itemDerecha">$ {propiedades.valor}</td>
-            <td className="itemDerecha">$ {propiedades.valor*propiedades.cantidad}</td>
+            <td>$ {propiedades.valor}</td>
+            <td>$ {propiedades.valor*propiedades.cantidad}</td>
+            <td><button onClick={propiedades.funcion} idele={propiedades.idele} >Editar</button></td>
         </tr>
          
     )
