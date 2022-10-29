@@ -10,3 +10,20 @@
     vertical-align: middle;
     padding: 5px 15px;
 }
+
+.cajaimagen {
+    border:1px solid #dedede;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.btncarrito {
+    background-color: #ff9d00;
+    width: 100%;
+    color: #FFFFFF;
+}
+
+.btncarrito:hover {
+    background-color: #df8b02;
+    color: white;
+}

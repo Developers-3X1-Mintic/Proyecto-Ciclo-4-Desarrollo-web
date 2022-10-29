@@ -2,15 +2,17 @@ import logopri from "../assets/img/logoDevelopers.svg";
 import React, { useState } from "react"
 import "../assets/css/StyleCuerpo.css"
 import ListaCarrito from "./listaCarritoClientes"
+import ListaProductoCliente from "./listaProductosClientes"
 
 
 function VistaCliente() {
   
 
-  let [cuerpo, setCuerpo] = useState(<div>Lista de productos</div>)
+  let [cuerpo, setCuerpo] = useState(<ListaProductoCliente />)
 
   function cambiarCuerpoLista() {
-    setCuerpo(cuerpo = <div>Lista de productos</div>);
+    //cambia la vista a lista de produtos
+    setCuerpo(cuerpo = <ListaProductoCliente />);
     let activos = document.getElementsByClassName("nav-link");
     for (var i = 0; i < activos.length; i++) {
       activos[i].classList.remove("active");
@@ -20,6 +22,7 @@ function VistaCliente() {
   }
 
   function cambiarCuerpoCarrito() {
+    //cambia la vista a carrito
     setCuerpo(cuerpo = <ListaCarrito />);
 
     let activos = document.getElementsByClassName("nav-link");
