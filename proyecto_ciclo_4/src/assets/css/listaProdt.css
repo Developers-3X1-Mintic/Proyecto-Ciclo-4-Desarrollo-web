@@ -32,5 +32,16 @@
     background-color: #ff9d00;
     border-radius: 10px;
     border: none;
+}
 
+.btnEliminarProd:hover {
+    background-color: #e28c02;
+}
+
+.casillaCantidad {
+    max-width: 45px;
+}
+
+.casillaCantidad input {
+    width: 100% !important;
 }

@@ -6,7 +6,7 @@ function ItemListaProd (propiedades) {
             <td>
                 <img src={propiedades.imagen} width={100}/>
             </td>
-            <td>{propiedades.cantidad}</td>
+            <td className="casillaCantidad"><input type="number" value={propiedades.cantidad}/></td>
             <td>{propiedades.producto}</td>
             <td>$ {propiedades.valor}</td>
             <td>$ {propiedades.valor*propiedades.cantidad}</td>

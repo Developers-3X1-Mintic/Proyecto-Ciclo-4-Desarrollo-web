@@ -26,7 +26,7 @@ const FormProductoEditar = (prop) => {
                     <input className="form-control" value={prop.cantidad} />
                 </div>
                 <div className="row">
-                    <button type="button" className="btn btnEliminarProd">Guardar</button>
+                    <button type="button" className="btn btnEliminarProd mt-3">Guardar</button>
                 </div>
                 
             </form>
