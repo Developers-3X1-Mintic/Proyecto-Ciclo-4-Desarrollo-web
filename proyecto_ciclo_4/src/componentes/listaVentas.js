@@ -28,14 +28,14 @@ function ListaVentas() {
                     <tr>
                         <td>{dato.fecha}</td>
                         <td>{dato.id}</td>
-                        <td>$ {dato.valor}</td>
+                        <td className="text-end">$ {dato.valor}</td>
                     </tr>  
                   )  
                 })}
                 <tr>
                         <td></td>
-                        <td></td>
-                        <td>$ {total}</td>
+                        <td className="text-end"><b>Total</b></td>
+                        <td className="text-end"><b>$ {total}</b></td>
                 </tr> 
             </tbody>
         </table>
