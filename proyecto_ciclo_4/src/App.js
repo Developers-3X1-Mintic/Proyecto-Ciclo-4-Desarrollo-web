@@ -10,18 +10,32 @@ function App() {
 
   function cambiarVistaAdmin() {
     setVista(vista = <VistaAdmin />);
+
+    let activos = document.getElementsByClassName("btnUsuario");
+    for (var i = 0; i < activos.length; i++) {
+      activos[i].classList.remove("active");
+    }
+
+    document.getElementById("btnAdmin").className += " active"
   }
 
   function cambiarVistaCliente() {
     setVista(vista = <VistaCliente />);
+
+    let activos = document.getElementsByClassName("btnUsuario");
+    for (var i = 0; i < activos.length; i++) {
+      activos[i].classList.remove("active");
+    }
+
+    document.getElementById("btnCliente").className += " active"
   }
 
   return (
     <div className="App d-flex flex-column h-100">
       <div className='nav-usuario'>
         <div className='container ctn-btn'>
-          <button className='btnUsuario ms-auto ' onClick={cambiarVistaAdmin}>Administrador</button>
-          <button className='btnUsuario' onClick={cambiarVistaCliente}>Cliente</button>
+          <button className='btnUsuario ms-auto ' onClick={cambiarVistaAdmin} id="btnAdmin">Administrador</button>
+          <button className='btnUsuario active' onClick={cambiarVistaCliente} id="btnCliente">Cliente</button>
         </div>
         
       </div>

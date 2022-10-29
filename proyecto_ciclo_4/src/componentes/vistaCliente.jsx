@@ -47,7 +47,7 @@ function VistaCliente() {
               </button>
               <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                  <button className="nav-link boton-menu" onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
+                  <button className="nav-link boton-menu active" onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
                   <button className="nav-link boton-menu" onClick={cambiarCuerpoCarrito} id="btnCarrito" >Carrito</button>
                 </div>
               </div>
