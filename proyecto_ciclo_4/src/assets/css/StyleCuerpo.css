@@ -1,0 +1,18 @@
+.boton-menu {
+    background: transparent;
+    font-size: 1.3rem;
+    margin: 0 15px;
+    border-bottom: 3px solid transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 8px 0;
+}
+
+.boton-menu:hover {
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.boton-menu.active {
+    border-bottom: 3px solid #FF9D00;
+}

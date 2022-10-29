@@ -1,0 +1,28 @@
+.App {
+    min-height: 100vh;
+}
+
+.btnUsuario {
+    padding: 4px;
+    border:none;
+    border-radius: 10px;
+    background: transparent;
+    color: rgb(207, 224, 240);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+
+.btnUsuario:hover {
+    color: #FFFFFF;
+}
+
+.nav-usuario {
+    width: 100%;
+    background:#1F262D;
+}
+
+.nav-usuario .ctn-btn {
+    display: flex;
+    align-items: flex-end;
+}
