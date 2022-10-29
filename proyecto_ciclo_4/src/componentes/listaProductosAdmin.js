@@ -5,7 +5,7 @@ import "../assets/css/listaProdt.css"
 
 const ruta = require.context("../assets/img/", true);
 
-const ListaProductoCliente = () => {
+const ListaProductoAdmin = () => {
     let [datos, setDatos] = useState(Productos)
 
     return (
@@ -26,7 +26,6 @@ const ListaProductoCliente = () => {
                                         <h4>{dato.nombreProducto}</h4>
                                         <p>$ {dato.valor}</p>
                                         <p>Stock: {dato.cantidad}</p>
-                                        <button className="btn btncarrito" type="button">Agregar a carrito</button>
                                     </div>
                                 </div>
                             </div>
@@ -39,4 +38,4 @@ const ListaProductoCliente = () => {
 
 }
 
-export default ListaProductoCliente
+export default ListaProductoAdmin

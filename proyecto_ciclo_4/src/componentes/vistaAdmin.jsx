@@ -2,13 +2,14 @@ import logopri from "../assets/img/logoDevelopers.svg";
 import React, { useState } from "react"
 import "../assets/css/StyleCuerpo.css"
 import ModificarProducto from "./modificarProducto";
+import ListaProductoAdmin from "./listaProductosAdmin"
 
 function VistaAdmin() {
-  let [cuerpo, setCuerpo] = useState(<div>Lista de producto administrador</div>)
+  let [cuerpo, setCuerpo] = useState(<ListaProductoAdmin/>)
 
   function cambiarCuerpoLista() {
     //Aca se carga el componente del cuerpo correspondiente a la lista de productos
-    setCuerpo(cuerpo = <div>Lista de producto administrador</div> );
+    setCuerpo(cuerpo = <ListaProductoAdmin/>);
 
     let activos = document.getElementsByClassName("nav-link");
     for (var i = 0; i < activos.length; i++) {
