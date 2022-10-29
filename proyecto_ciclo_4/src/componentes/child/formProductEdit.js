@@ -25,6 +25,10 @@ const FormProductoEditar = (prop) => {
                     <label className="col-sm-2 col-form-label" >Stock: </label>
                     <input className="form-control" value={prop.cantidad} />
                 </div>
+                <div className="row">
+                    <button type="button" className="btn btnEliminarProd">Guardar</button>
+                </div>
+                
             </form>
         </div>
     

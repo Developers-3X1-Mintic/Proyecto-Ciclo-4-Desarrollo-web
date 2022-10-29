@@ -10,7 +10,7 @@ function ItemListaProd (propiedades) {
             <td>{propiedades.producto}</td>
             <td>$ {propiedades.valor}</td>
             <td>$ {propiedades.valor*propiedades.cantidad}</td>
-            <td><button onClick={propiedades.funcion} idele={propiedades.idele} >Editar</button></td>
+            <td><button className="btn btnEliminarProd" onClick={propiedades.funcion} idele={propiedades.idele} >Eliminar</button></td>
         </tr>
          
     )

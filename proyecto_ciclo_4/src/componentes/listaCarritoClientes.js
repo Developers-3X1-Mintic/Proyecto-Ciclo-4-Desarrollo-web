@@ -6,7 +6,7 @@ const ruta = require.context("../assets/img/", true);
 function ListaCarrito() {
     let [datos, setDatos] = useState(Productos)
     let [campo, setCampo] = useState(<div><div>
-        <h1 className="text-center">Lista de productos</h1>
+        <h1 className="text-center">Carrito de compra</h1>
     </div>
     <div className="p-3">
         <table className="table w-100">
@@ -37,8 +37,8 @@ function ListaCarrito() {
         </table>
     </div>
     <div className="text-end">
-        <button type="button" className="btn btn-warning">Finalizar Compra</button>
-        <button type="button" className="btn btn-warning ms-3">Cancelar</button>
+        <button type="button" className="btn btnEliminarProd">Finalizar Compra</button>
+        <button type="button" className="btn btnEliminarProd ms-3">Cancelar</button>
     </div></div>)
 
     function activar(elemento){
