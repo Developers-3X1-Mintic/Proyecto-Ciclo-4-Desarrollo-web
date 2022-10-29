@@ -3,18 +3,21 @@
   "imagen":"juguete_01.jpg",
   "cantidad":10,
   "nombreProducto":"Juguete de ccorazon",
-  "valor":32000
+  "valor":12000,
+  "descripcion":"Esta es la descripción del primer juguete"
 },{
   "id":105,
   "imagen":"juguete_02.jpg",
-  "cantidad":10,
-  "nombreProducto":"Juguete de ccorazon",
-  "valor":32000
+  "cantidad":20,
+  "nombreProducto":"Juguete didactico",
+  "valor":15000,
+  "descripcion":"Esta es la descripción del primer juguete"
 },
 {
   "id":106,
   "imagen":"juguete_03.jpg",
-  "cantidad":10,
-  "nombreProducto":"Juguete de ccorazon",
-  "valor":32000
+  "cantidad":4,
+  "nombreProducto":"Tren construcción",
+  "valor":32000,
+  "descripcion":"Esta es la descripción del primer juguete"
 }]

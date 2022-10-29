@@ -1,12 +1,15 @@
 import logopri from "../assets/img/logoDevelopers.svg";
 import React, { useState } from "react"
 import "../assets/css/StyleCuerpo.css"
+import ModificarProducto from "./modificarProducto";
 
 function VistaAdmin() {
   let [cuerpo, setCuerpo] = useState(<div>Lista de producto administrador</div>)
 
   function cambiarCuerpoLista() {
+    //Aca se carga el componente del cuerpo correspondiente a la lista de productos
     setCuerpo(cuerpo = <div>Lista de producto administrador</div> );
+
     let activos = document.getElementsByClassName("nav-link");
     for (var i = 0; i < activos.length; i++) {
       activos[i].classList.remove("active");
@@ -16,17 +19,21 @@ function VistaAdmin() {
   }
 
   function cambiarCuerpoModificar() {
-    setCuerpo(cuerpo = <div>Modificar producto</div> );
+    //Aca se carga el componente del cuerpo correspondiente a modificar producto
+    setCuerpo(cuerpo = <ModificarProducto /> );
+
     let activos = document.getElementsByClassName("nav-link");
     for (var i = 0; i < activos.length; i++) {
       activos[i].classList.remove("active");
     }
 
-    document.getElementById("btnListProd").className += " active"
+    document.getElementById("btnModificar").className += " active"
   }
 
   function cambiarCuerpoVentas() {
+    //Aca se carga el componente del cuerpo correspondiente a la lista de ventas
     setCuerpo(cuerpo = <div>Lista de Ventas</div> );
+
     let activos = document.getElementsByClassName("nav-link");
     for (var i = 0; i < activos.length; i++) {
       activos[i].classList.remove("active");
@@ -48,7 +55,7 @@ function VistaAdmin() {
               <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                   <button className="nav-link boton-menu" onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
-                  <button className="nav-link boton-menu" onClick={cambiarCuerpoModificar} id="btnVentas" >Modificar producto</button>
+                  <button className="nav-link boton-menu" onClick={cambiarCuerpoModificar} id="btnModificar" >Modificar producto</button>
                   <button className="nav-link boton-menu" onClick={cambiarCuerpoVentas} id="btnVentas" >Lista ventas</button>
                 </div>
               </div>
