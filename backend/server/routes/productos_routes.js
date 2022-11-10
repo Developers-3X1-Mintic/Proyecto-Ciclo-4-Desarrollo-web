@@ -5,8 +5,8 @@ const router = Router()
 
 router.get("/productos", obtenerProductos)
 router.post("/productos", crearProductos)
-router.put("/productos", actualizarProductos)
-router.delete("/productos", eliminarProductos)
+router.put("/producto/:id", actualizarProductos) //636c66596c273d9b46b3daa2
+router.delete("/producto/:id", eliminarProductos)
 
 router.get("/producto/:id", buscarProductosID)
 
