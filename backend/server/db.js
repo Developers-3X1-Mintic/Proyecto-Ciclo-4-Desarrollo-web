@@ -1,9 +1,18 @@
 import Mongo from "mongoose"
+import {MONGODB_URI} from "./config.js"
 
-Mongo.connect("mongodb+srv://developers:123Rr@clusterprinc.crxbi6b.mongodb.net/developers3x1?retryWrites=true&w=majority")
-.then(() => console.log("Connexion con Mongo exitosa"))
-.catch((err) => console.log(err))
+export async function DBconnection (){
+    try {
+        const db = await Mongo.connect(MONGODB_URI); 
+        console.log("Connexion Mongo altlas con " + db.connection.name)
+    } catch(error) {
+        console.log(error.message)
+    } 
+}
+  
 
+
+/*
 let esquemaProd = Mongo.Schema({
     _id:Number,
     imagen:String,
@@ -26,7 +35,7 @@ let modeloProd = Mongo.model("productos", esquemaProd);
 let Insertar = async (datos) => {
     console.log("guardando")
     let documento = new modeloProd({
-        _id:4,
+        _id:5,
         imagen:"imagen005.jpg",
         cantidad:12,
         nombreProducto:"juguete prueba",
@@ -36,4 +45,4 @@ let Insertar = async (datos) => {
     await documento.save()
 }
 
-export {Insertar}
+export {Insertar}*/
