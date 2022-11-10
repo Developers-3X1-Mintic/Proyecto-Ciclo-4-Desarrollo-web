@@ -1,49 +1,77 @@
 import {ProductoModelo} from "../models/Producto.js"
+import {uploadImage} from "../libraries/cloudinary.js"
+import fs from "fs-extra"
 
 export const obtenerProductos = async (req, resp) => {
-    let productos = await ProductoModelo.find()
-    resp.send(productos)
+    try {
+        let productos = await ProductoModelo.find()
+        return resp.send(productos)
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
+    
 }
-export const crearProductos = async (req, resp) => { 
-    const {nombreProducto, imagen, stock, precio, descripcion} = req.body
-    const newProducto = new ProductoModelo({ nombreProducto, imagen, stock, precio, descripcion })
 
-    await newProducto.save()
-    return resp.json(newProducto)
+export const crearProductos = async (req, resp) => { 
+    try {
+        const {nombreProducto, stock, precio, descripcion} = req.body
+        
+        let imagen = null
+        
+        if(req.files.imagen){
+            const archivo = await uploadImage(req.files.imagen.tempFilePath)
+            await fs.remove(req.files.imagen.tempFilePath)
+            
+            imagen = {
+                url:archivo.secure_url,
+                public_id:archivo.public_id
+            }
+
+            
+        }
+
+        const newProducto = new ProductoModelo({ nombreProducto, imagen, stock, precio, descripcion })
+
+        await newProducto.save()
+        return resp.json(newProducto)
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
 }
 
 export const actualizarProductos = async (req, resp) => { 
-    const producto = await ProductoModelo.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    return resp.json(producto)
+    try {
+        const producto = await ProductoModelo.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        return resp.json(producto)
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
 }
 
 export const eliminarProductos = async (req, resp) => { 
-    const deleteP = await ProductoModelo.findByIdAndDelete(req.params.id)
+    try {
+        const deleteP = await ProductoModelo.findByIdAndDelete(req.params.id)
 
-    if(!deleteP){
-        return resp.sendStatus(404)
-    } else {
-        return resp.sendStatus(204)
+        if(!deleteP){
+            return resp.sendStatus(404)
+        } else {
+            return resp.sendStatus(204)
+        }
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
     }
 }
 
 export const buscarProductosID = async (req, resp) => { 
-    console.log(req.params.id)
-    let producto = await ProductoModelo.findById(req.params.id)
+    try {
+        let producto = await ProductoModelo.findById(req.params.id)
 
-    if(!producto){
-        return resp.send("no se encontro el producto")
-    } else {
-        return resp.json(producto)
+        if(!producto){
+            return resp.send("no se encontro el producto")
+        } else {
+            return resp.json(producto)
+        }
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
     }
 }
-
-
-
-/*{
-  "nombreProducto":"Juguete carrito",
-  "imagen":"juguete_04.jpg",
-  "stock":34,
-  "precio":13400,
-  "descripcion":"Carrito para niños entre los 12 y 15 años"
-}*/
