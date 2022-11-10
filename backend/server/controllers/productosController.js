@@ -1,4 +1,4 @@
-import { ProductoModelo } from "../../models/Producto.js"
+import {ProductoModelo} from "../models/Producto.js"
 
 export const obtenerProductos = async (req, resp) => {
     let productos = await ProductoModelo.find()
@@ -27,11 +27,17 @@ export const eliminarProductos = async (req, resp) => {
     }
 }
 
-export const buscarProductosID =  (req, resp) => { 
+export const buscarProductosID = async (req, resp) => { 
     console.log(req.params.id)
-    let producto = ProductoModelo.findById(req.params.id)
-    resp.send(producto)
+    let producto = await ProductoModelo.findById(req.params.id)
+
+    if(!producto){
+        return resp.send("no se encontro el producto")
+    } else {
+        return resp.json(producto)
+    }
 }
+
 
 
 /*{

@@ -1,6 +1,5 @@
 import Mongo from "mongoose"
 
-
 const productoSchema = new Mongo.Schema({
     nombreProducto:{
         type:String,

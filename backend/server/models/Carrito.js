@@ -1,4 +1,4 @@
-import Mongo, { now } from "mongoose"
+import Mongo from "mongoose"
 
 
 const carritoSchema = new Mongo.Schema({
