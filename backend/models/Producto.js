@@ -28,4 +28,4 @@ const productoSchema = new Mongo.Schema({
     }
 }, {versionKey:false})
 
-export default Mongo.model("Producto",productoSchema)
+export const productoModelo = Mongo.model("Producto",productoSchema)
