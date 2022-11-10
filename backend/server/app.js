@@ -1,6 +1,7 @@
 import ex from "express"
 import productoRoutes from "./routes/productos_routes.js"
 import fileUpload from "express-fileupload";
+import routerCarrito from "./routes/carrito_routes.js";
 
 const app = ex()
 //midelware
@@ -13,5 +14,6 @@ app.use(fileUpload({
 
 //Routes
 app.use(productoRoutes)
+app.use(routerCarrito)
 
 export default app

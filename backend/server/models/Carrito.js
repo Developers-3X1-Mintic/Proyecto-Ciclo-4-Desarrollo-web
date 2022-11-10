@@ -2,15 +2,18 @@ import Mongo from "mongoose"
 
 
 const carritoSchema = new Mongo.Schema({
-    fecha:Date,
-    id_user:{
-        type: ObjectId,
-        required: true,
+    fecha:{
+        type: Date,
+        default: Date.now
     },
-    Productos:[{
-        idProd:ObjectId,
+    id_user:{
+        type: Mongo.Types.ObjectId,
+        required: true
+    },
+    productos:[{
+        idProd:Mongo.Types.ObjectId,
         cantidad:Number
     }]
 }, {versionKey:false})
 
-export default Mongo.model("Carrito",carritoSchema)
+export const CarritoModelo = Mongo.model("carrito",carritoSchema)
