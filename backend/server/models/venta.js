@@ -16,7 +16,7 @@ const ventaSchema = new Mongo.Schema({
     }]
 })
 
-export const VentaModelo = Mongo.model("ventas",ventaSchema);
+export const VentaModelo = Mongo.model("venta",ventaSchema);
 
 
     

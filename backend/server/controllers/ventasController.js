@@ -10,12 +10,12 @@ export const obtenerVentas = async (req, resp) => {
     
 }
 
-export const buscarVentasID = async (req, resp) => { 
+export const buscarVentaID = async (req, resp) => { 
     try {
         let venta = await VentaModelo.findById(req.params.id)
 
         if(!venta){
-            return resp.send("no se encontro el producto")
+            return resp.send("Venta no encontrada")
         } else {
             return resp.json(venta)
         }
@@ -24,3 +24,16 @@ export const buscarVentasID = async (req, resp) => {
     }
 }
 
+export const crearVenta = async (req, resp) => { 
+    try {
+        const {id_user, productos, valor} = req.body
+            
+        const newVenta = new VentaModelo({id_user, items})
+
+        await newVenta.save()
+        return resp.json(newVenta)
+    } 
+    catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
+}
