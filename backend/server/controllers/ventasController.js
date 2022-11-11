@@ -37,3 +37,13 @@ export const crearVenta = async (req, resp) => {
         return resp.status(500).json({'Error' : error.message})
     }
 }
+
+export const actualizarVenta = async (req, resp) => { 
+    try {
+        const venta = await VentaModelo.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        return resp.json(venta)
+    } 
+    catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
+}
