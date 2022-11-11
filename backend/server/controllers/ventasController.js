@@ -26,7 +26,7 @@ export const buscarVentaID = async (req, resp) => {
 
 export const crearVenta = async (req, resp) => { 
     try {
-        const {id_user, productos, valor} = req.body
+        const {id_user, items} = req.body
             
         const newVenta = new VentaModelo({id_user, items})
 
