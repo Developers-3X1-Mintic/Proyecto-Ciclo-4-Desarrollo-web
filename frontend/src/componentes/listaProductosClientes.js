@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import Productos from "../assets/productos.json";
+//import Productos from "../assets/productos.json";
 import "../assets/css/listaProdt.css"
 
 
 const ruta = require.context("../assets/img/", true);
 
 const ListaProductoCliente = () => {
-    let [datos, setDatos] = useState(Productos)
+   // let [datos, setDatos] = useState(Productos)
 
+   let productos = traerDatos();
+   let [datos, setDatos] = useState(productos);
     return (
         <div>
             <div>
@@ -36,6 +38,16 @@ const ListaProductoCliente = () => {
             </div>
         </div>
     )
+
+}
+
+function traerDatos(){
+    fetch("http://localhost:5050/productos",{
+        method:"get",
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(res=>res.json())
+    .then((res)=>{return res})
 
 }
 

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import ItemListaProd from "./child/itemListaProd";
-import Productos from "../assets/productos.json";
+//import Productos from "../assets/productos.json";
 const ruta = require.context("../assets/img/", true);
 
 function ListaCarrito() {
-    let [datos, setDatos] = useState(Productos)
+    //let [datos, setDatos] = useState(Productos)
+
+    let carrito = traerDatos();
+    let [datos, setDatos] = useState(carrito);
+
     let [campo, setCampo] = useState(<div><div>
         <h1 className="text-center">Carrito de compra</h1>
     </div>
@@ -52,6 +56,16 @@ function ListaCarrito() {
            {campo}
         </div>
     )
+
+}
+
+function traerDatos(){
+    fetch("http://localhost:5050/carritos/:id",{
+        method:"get",
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(res=>res.json())
+    .then((res)=>{return res})
 
 }
 

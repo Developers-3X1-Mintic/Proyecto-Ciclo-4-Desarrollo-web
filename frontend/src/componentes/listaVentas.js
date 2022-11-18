@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import Ventas from "../assets/ventas.json";
+//import Ventas from "../assets/ventas.json";
 const ruta = require.context("../assets/img/", true);
 
 function ListaVentas() {
-    let [datos, setDatos] = useState(Ventas)
+    
+    //let [datos, setDatos] = useState(Ventas)
+
+
+    let ventas = traerDatos();
+    let [datos, setDatos] = useState(ventas);
     let total = 0;
 
 
@@ -43,6 +48,16 @@ function ListaVentas() {
     </div>
         </div>
     )
+
+}
+
+function traerDatos(){
+    fetch("http://localhost:5050/ventas",{
+        method:"get",
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(res=>res.json())
+    .then((res)=>{return res})
 
 }
 
