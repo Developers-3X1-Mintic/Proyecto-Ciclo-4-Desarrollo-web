@@ -3,10 +3,10 @@ import { useState } from 'react';
 import VistaCliente from './componentes/vistaCliente';
 import VistaAdmin from './componentes/vistaAdmin';
 import Footer from './componentes/footer';
-
+import Login from "./componentes/login.js"
 
 function App() {
-  let [vista, setVista] = useState(<VistaCliente />)
+  let [vista, setVista] = useState(<Login />)
 
   function cambiarVistaAdmin() {
     setVista(vista = <VistaAdmin />);
