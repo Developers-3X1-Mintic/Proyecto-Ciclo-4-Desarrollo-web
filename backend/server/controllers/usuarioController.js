@@ -66,31 +66,31 @@ export const buscarUsuarioID = async (req, resp) => {
 //Iniciar Sesion - Login
 export const loginUser = async(req, resp)=>{
     try {
-    const email =  req.params.email;
-    
+    const email =  req.params.email
     const password = req.params.pass
     //revisar si los campos estan completos
     if (!email || !password){
-        return resp.send("Por favor ingrese email & Contraseña")
+        return resp.send({"error":"Por favor ingrese email valido"})
     }
-    console.log(password)
+    
     //Buscar al usuario en nuestra base de datos
     const user = await modeloUsuario.findOne({email})
-   console.log(user)
+   
     if(!user){
-        return resp.send( "El email es inválido")
+        console.log("usuario invaldo")
+        return resp.send({"error":"El email es inválido"})
     }
 
     //Comparar contraseñas, verificar si está bien
     //const passcr = await bcrypt.hash(password, 10)
     const validador = await bcrypt.compare(password, user.password)
-    console.log(validador)
+    
    
 
     if (!validador){
-        return resp.send("La contraseña no es correcta")
+        return resp.send({"error":"La contraseña no es correcta"})
     }else{
-        return resp.json(user)
+        return resp.send(user)
     }
     } catch (error){
         return resp.status(500).json({'Error' : error.message})

@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-//import Ventas from "../assets/ventas.json";
-const ruta = require.context("../assets/img/", true);
+import { useState } from "react";
+import {ItemVenta} from "./child/itemVenta.js"
 
 function ListaVentas() {
     
-    //let [datos, setDatos] = useState(Ventas)
+    let [datosVentas, setDatos] = useState("")
+    let [total, setTotal] = useState(0)
+    let valorTotal = 0
+    fetch("http://localhost:5050/ventas")
+    .then(res=>res.json())
+    .then((datos)=>{
+        
+        setDatos(datosVentas = datos.map(item => {
+            let fecha = new Date(item.fecha)
+            fecha = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear()
 
-
-    let ventas = traerDatos();
-    let [datos, setDatos] = useState(ventas);
-    let total = 0;
+            let subtotal = 0
+            item.items.forEach(element => {
+                subtotal += element.valor*element.cantidad
+            });
+            valorTotal += subtotal
+            console.log(valorTotal)
+            return(
+                <ItemVenta fecha={fecha} nombre={item.cliente.nombre} subtotal={subtotal} items={item.items} id="ventas" />
+            )
+            
+        }))
+        setTotal(total = valorTotal)
+    })
+    .catch( err => console.error(err));
 
 
     return (
@@ -22,27 +40,20 @@ function ListaVentas() {
             <thead className="table-dark">
                 <tr>
                     <td>Fecha</td>
-                    <td>idVenta</td>
+                    <td>Cliente</td>
+                    <td>Productos</td>
                     <td>Valor</td> 
                 </tr>
             </thead>
-            <tbody>
-                {datos.map( (dato) => {
-                    total += dato.valor;
-                  return(
-                    <tr>
-                        <td>{dato.fecha}</td>
-                        <td>{dato.id}</td>
-                        <td className="text-end">$ {dato.valor}</td>
-                    </tr>  
-                  )  
-                })}
+            <tbody>{datosVentas}</tbody>
+            <tfoot>
                 <tr>
-                        <td></td>
-                        <td className="text-end"><b>Total</b></td>
-                        <td className="text-end"><b>$ {total}</b></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td className="text-end"><b>Total</b></td>
+                    <td className="text-end"><b>$ {total}</b></td>
                 </tr> 
-            </tbody>
+            </tfoot>
         </table>
     </div>
     </div>
@@ -51,14 +62,4 @@ function ListaVentas() {
 
 }
 
-function traerDatos(){
-    fetch("http://localhost:5050/ventas",{
-        method:"get",
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(res=>res.json())
-    .then((res)=>{return res})
-
-}
-
-export default ListaVentas
+export {ListaVentas}

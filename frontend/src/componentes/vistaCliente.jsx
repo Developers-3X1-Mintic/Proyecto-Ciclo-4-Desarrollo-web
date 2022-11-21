@@ -1,8 +1,10 @@
 import logopri from "../assets/img/logoDevelopers.svg";
-import React, { useState } from "react"
+import { useState } from "react"
 import "../assets/css/StyleCuerpo.css"
 import ListaCarrito from "./listaCarritoClientes"
 import ListaProductoCliente from "./listaProductosClientes"
+
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
 
 
 function VistaCliente() {
@@ -36,32 +38,43 @@ function VistaCliente() {
   }
 
   return (
-    <div className="w-100">
-      <header className="flex-grow-1">
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-dark">
-            <div className="container-fluid justify-content-between">
-              <div className="navbar-brand" ><img className="logo_pri" src={logopri} alt="logo" /></div>
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                <div className="navbar-nav">
-                  <button className="nav-link boton-menu active" onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
-                  <button className="nav-link boton-menu" onClick={cambiarCuerpoCarrito} id="btnCarrito" >Carrito</button>
+    <div className="w-100 fondo-blanco">
+      <BrowserRouter>
+        <header className="flex-grow-1">
+          <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-dark">
+              <div className="container-fluid justify-content-between">
+                <div className="navbar-brand" ><img className="logo_pri" src={logopri} alt="logo" /></div>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                  <div className="navbar-nav">
+                    <Link to="/" className="nav-link boton-menu">Productos</Link>
+                    <Link to="/carrito" className="nav-link boton-menu">Carrito</Link>
+                    {/*<button  onClick={cambiarCuerpoLista} id="btnListProd" >Lista productos</button>
+                    <button  onClick={cambiarCuerpoCarrito} id="btnCarrito" >Carrito</button>*/}
+                  </div>
                 </div>
               </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-      <section className="w-100">
+            </nav>
+          </div>
+        </header>
+        <section className="w-100">
         <div className="container">
           <div className="row p-5">
-            {cuerpo}
+            <Routes>
+              <Route path="/" element={<ListaProductoCliente />} />
+            </Routes>
           </div>
         </div>
       </section>
+      </BrowserRouter>
+      {/*
+      
+            {cuerpo}
+          </div>
+        */}
     </div>
 
   );

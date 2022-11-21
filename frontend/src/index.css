@@ -24,3 +24,7 @@ body, html {
       font-size: .7rem;
       opacity: .5;
   }
+
+  .fondo-blanco {
+    background-color: aliceblue;
+  }

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-//import Productos from "../assets/productos.json";
-import "../assets/css/listaProdt.css"
+import { useState } from "react";
+import "../assets/css/StyleCuerpo.css"
+import { ProductoAdminList } from "./child/productoAdminList.js";
 
 
-const ruta = require.context("../assets/img/", true);
+const ListaProductosAdmin = () => {
+    let [datosProd, setDatos] = useState("")
 
-const ListaProductoAdmin = () => {
-    //let [datos, setDatos] = useState(Productos)
-
-    let productos = traerDatos();
-    let [datos, setDatos] = useState(productos);
+    fetch("http://localhost:5050/productos")
+    .then(resp => resp.json())
+    .then(datosw => {
+        setDatos(datosProd = datosw.map(dato => {
+            return <ProductoAdminList producto={dato} />
+       }))
+    })
 
     return (
         <div>
@@ -17,38 +20,23 @@ const ListaProductoAdmin = () => {
                 <h1 className="text-center">Lista de productos</h1>
             </div>
             <div className="p-3">
-                <div className="row">
-                    {datos.map((dato) => {
-                        return (
-                            <div className="col-3 p-1">
-                                <div className="cajaimagen">
-                                    <div className="imagen p-2">
-                                        <img src={ruta('./' + dato.imagen)} width="100%" />
-                                    </div>
-                                    <div className="descripcion mt-5 p-2">
-                                        <h4>{dato.nombreProducto}</h4>
-                                        <p>$ {dato.valor}</p>
-                                        <p>Stock: {dato.cantidad}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col" className="text-center">Miniaura</th>
+                        <th scope="col" className="text-center">Nombre</th>
+                        <th scope="col" className="text-center">Stock</th>
+                        <th scope="col" className="text-center">Precio</th>
+                        <th scope="col" className="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>{datosProd}</tbody>
+                    
+                </table>
             </div>
         </div>
     )
 
 }
 
-function traerDatos(){
-    fetch("http://localhost:5050/productos",{
-        method:"get",
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(res=>res.json())
-    .then((res)=>{return res})
-
-}
-
-export default ListaProductoAdmin
+export {ListaProductosAdmin}

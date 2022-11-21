@@ -2,9 +2,9 @@ import Mongo from "mongoose"
 
 const ventaSchema = new Mongo.Schema({
     fecha:{type:Date,default:Date.now},
-    id_user:{
-        type: Mongo.Types.ObjectId,
-        required: true,
+    cliente:{
+        id: Mongo.Types.ObjectId,
+        nombre:String
     },
 
 

@@ -7,12 +7,14 @@ const carritoSchema = new Mongo.Schema({
         default: Date.now
     },
     id_user:{
-        type: Mongo.Types.ObjectId,
+        type: String,
         required: true
     },
     productos:[{
-        idProd:Mongo.Types.ObjectId,
-        cantidad:Number
+        _id:String,
+        cantidad:Number,
+        imagen:String,
+        precio:Number
     }]
 }, {versionKey:false})
 

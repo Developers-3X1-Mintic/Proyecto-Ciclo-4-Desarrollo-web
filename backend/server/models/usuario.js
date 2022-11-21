@@ -19,7 +19,7 @@ const usuarioSchema = new Mongo.Schema({
         
     },
    
-    role: {
+    rol: {
         type: String,
         default: 'user'
     },

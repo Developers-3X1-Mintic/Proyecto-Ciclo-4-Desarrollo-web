@@ -1,34 +1,75 @@
 import logopri from "../assets/img/logoDevelopers.svg";
 import  "../assets/css/login.css"
+import {useCookies} from "react-cookie"
+//import {cambiarVistaInicio} from "../App.js"
 
 function Login () {
+  const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role']);
+
+  function loguear (e) {
+    e.preventDefault();
+    const email = document.getElementById("email_login").value
+    const pass = document.getElementById("pass_login").value
+  
+    if(!email || !pass){
+      alert("Ingrese los datos")
+      return
+    }
+    let url = "http://localhost:5050/usuario/" + email + "/" + pass
+    
+    fetch(url)
+    .then(resp => resp.json())
+    .then(datos => {
+      console.log(datos)
+      if(!datos.error){
+        //cambiarVistaInicio(datos)
+        console.log(datos.rol)
+        setCookie("id_user", datos._id, { path: '/' })
+        setCookie("role", datos.rol, { path: '/' })
+        if(datos.rol === "admin"){
+          window.location.href="http://localhost:3000/"
+        } else {
+          window.location.href="http://localhost:3000/"
+        }
+        
+      } else {
+        alert(datos.error)
+      }
+      
+    })
+    .catch((error) => console.log(error.message))
+      
+    
+  }
+
     return (
-      <section class="vh-100">
-        <div class="container-fluid h-custom"> 
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-              <img src={logopri} class="img-fluid" alt="Sample image" />
+      <section className="vh-100">
+        <div className="container-fluid h-custom"> 
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5 d-flex">
+              <img src={logopri} className="img-fluid logo-img" alt="Sample image" />
             </div>
 
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
-              <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control form-control-lg"
+              <div className="form-outline mb-4 text-center mb-5">
+                    <h2>INGRESAR</h2>
+                </div>
+              <div className="form-outline mb-5">
+            <input type="email" id="email_login" className="form-control form-control-lg"
               placeholder="Correo electrónico" />
-            <label class="form-label" for="form3Example3">Correo electrónico</label>
           </div>
 
-          <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
+          <div className="form-outline mb-3">
+            <input type="password" id="pass_login" className="form-control form-control-lg"
               placeholder="Contraseña" />
-            <label class="form-label" for="form3Example4">Contraseña</label>
           </div>
 
-          <div class="text-center text-lg-start mt-4 pt-2">
+          <div className="text-center mt-5 pt-2">
           
-              <button type="button" class="btn btn-primary btn-lg">Ingresar</button> 
-            <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta? <a href="#!"
-                class="link-danger">Registrar</a></p>
+              <button className="btn btn-primary btn-lg btn-login" onClick={loguear}>Ingresar</button> 
+            <p className="small mt-5 pt-1 mb-0">¿No tienes una cuenta? <a href="#!"
+                className="link-registro">Registrar</a></p>
           </div>
           
               </form>
@@ -39,4 +80,6 @@ function Login () {
       </section>
     )
 }
-export default Login
+
+
+export {Login}

@@ -1,4 +1,4 @@
-import { CarritoModelo } from "../models/Carrito.js";
+import { CarritoModelo } from "../models/Carrito-old.js";
 
 
 export const obtenerCarritos = async (req, resp) => {
@@ -57,6 +57,21 @@ export const buscarCarritoID = async (req, resp) => {
 
         if(!carrito){
             return resp.send("no se encontró el carrito")
+        } else {
+            return resp.json(carrito)
+        }
+    } catch (error) {
+        return resp.status(500).json({'Error' : error.message})
+    }
+}
+
+export const buscarCarritoByCliente = async (req, resp) => { 
+    try {
+        let filtro = {id_user:req.params.id}
+        let carrito = await CarritoModelo.findOne(filtro)
+
+        if(!carrito){
+            return resp.send("")
         } else {
             return resp.json(carrito)
         }
