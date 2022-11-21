@@ -9,7 +9,7 @@ const ventaSchema = new Mongo.Schema({
 
 
     items:[{
-        _id:Mongo.Types.ObjectId,
+        _id:String,
         valor:Number,
         cantidad:Number,
         nombre:String

@@ -10,13 +10,32 @@ import { useCookies } from "react-cookie"
 
 
 function ListaCarrito() {
-    const [cookies, setCookie, removeCookie] = useCookies(['carrito']);
+    const [cookies, setCookie, removeCookie] = useCookies(['carrito', 'name_user', 'id_user']);
     const [show, setShow] = useState(false);
 
     let actTotal = null
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleComprar = () => {
+        setShow(false)
+        let carritoNew = cookies.carrito
+        /*Aquí se debería validar si la cantidad de objetos en el carrito corresponden al stock disponible*/
+        let venta = {
+            cliente:{
+                id: cookies.id_user,
+                nombre: cookies.name_user
+            },
+            items: carritoNew
+        }
+
+        fetch('http://localhost:5050/ventas/', {
+        method: 'POST',
+        body: JSON.stringify(venta)
+        })
+        .then(resp => resp.json())
+        .then(datos => console.log(datos))
+    }
 
     let [campo, setCampo] = useState("")
     
@@ -38,6 +57,17 @@ function ListaCarrito() {
             setCampo(campo = <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>)
         }
 
+    }
+
+    const actualizarTotal = () => {
+        let productos = cookies.carrito
+        let totalNew = 0
+
+        productos.forEach((elemt) => {
+            totalNew += elemt.precio*elemt.cantidad
+        })
+        console.log(totalNew)
+        setTotal(total = totalNew)
     }
 
     let actuaTotal = (valor) => {
@@ -84,20 +114,21 @@ function ListaCarrito() {
             </div>
             <div className="text-end mb-5">
 
-                <button type="button" onClick={deleteCarrito} className="btn btn-dark">Vaciar carrito</button>
+                <button type="button" onClick={actualizarTotal} className="btn btn-dark">Actulizar carrito</button>
+                <button type="button" onClick={deleteCarrito} className="btn btn-dark ms-3">Vaciar carrito</button>
                 <Button type="button" variant="dark" onClick={handleShow} className="ms-3">Finalizar Compra</Button>
 
                 <Modal show={show} onHide={handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title>Pagar</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>tu compra es por un valor de {}</Modal.Body>
+                    <Modal.Body>tu compra es por un valor de {total}</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
-                            Close
+                            Cancelar
                         </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
+                        <Button variant="primary" onClick={handleComprar}>
+                            Finalizar compra
                         </Button>
                     </Modal.Footer>
                 </Modal>

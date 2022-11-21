@@ -14,8 +14,7 @@ const usuarioSchema = new Mongo.Schema({
     },
     password: {
         type: String,
-        required: true
-       
+        required: true      
         
     },
    
