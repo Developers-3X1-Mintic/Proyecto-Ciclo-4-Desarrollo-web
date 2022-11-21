@@ -46,7 +46,7 @@ function ListaCarrito() {
     }
     let tot = 0
     carrito.forEach(element => {
-        tot += element.precio * element.cantidad
+        tot += element.valor * element.cantidad
     });
     const [total, setTotal] = useState(tot);
     
@@ -70,15 +70,6 @@ function ListaCarrito() {
         setTotal(total = totalNew)
     }
 
-    let actuaTotal = (valor) => {
-        
-        tot = 0
-        
-        console.log(valor)
-        setTotal(total = 13333)
-    }
-
-
     return (
         <div className="w-100">
             <div>
@@ -99,14 +90,13 @@ function ListaCarrito() {
                     </thead>
                     <tbody className="table-group-divider">
                         {carrito.map((prod, ind) => {
-                            //setTotal(total += prod.precio * prod.cantidad)
                             return (<ItemCarrito key={ind}
                                 ind={ind}
-                                precio={prod.precio}
+                                precio={prod.valor}
                                 imagen={prod.imagen}
+                                nombre={prod.nombre}
                                 cantidad={prod.cantidad}
-                                idele={prod.id}
-                                llamar={actuaTotal} />)
+                                idele={prod.id} />)
                         })}
                         <tr><td colSpan={4}></td><td>Total</td><td className="text-end"><b>{total}</b></td><td></td></tr>
                     </tbody>
