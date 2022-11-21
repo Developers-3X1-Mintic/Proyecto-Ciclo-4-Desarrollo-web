@@ -4,16 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {srvBck} from '../../constantes.js'
 import {useCookies} from "react-cookie"
 
-let carrito = {_:""}
 
 function ItemCarrito (props) {
+    let carrito = {_:""}
+
     const {llamar} = props
     const [cookies, setCookie, removeCookie] = useCookies(['carrito']);
 
     let id_prod = props.idele
     let [imagenP, setImagenP] = useState(props.imagen)
     let [nombreP, setNombreP] = useState(props.nombre)
-    let [precioP, setPrecioP] = useState(props.precio)
+    let [precioP, setPrecioP] = useState(props.valor)
     let [cantidadP, setCantidadP] = useState(props.cantidad)
     let [subtotalP, setSubtotalP] = useState(props.precio * props.cantidad)
 
@@ -23,7 +24,7 @@ function ItemCarrito (props) {
         if(window.confirm("esta seguro de eliminar el porducto")){
 
             carrito = cookies.carrito
-            let idDel = buscarPro()
+            let idDel = buscarPro(carrito)
                 
             carrito.splice(idDel, 1);
             
@@ -34,36 +35,36 @@ function ItemCarrito (props) {
 
 
     const setCarrito = (acc) => {
-        carrito = cookies.carrito
-        let idDel = buscarPro()
-        console.log(idDel)
+        let carritoNew = cookies.carrito
+        let idDel = buscarPro(carritoNew)
+        console.log(carritoNew[idDel])
         if(acc === "mas"){
-            carrito[idDel].cantidad += 1
+            carritoNew[idDel].cantidad += 1
         } else {
-            carrito[idDel].cantidad -= 1
+            carritoNew[idDel].cantidad -= 1
 
-            if(carrito[idDel].cantidad < 1){
-                carrito.splice(idDel, 1);
-                setCookie("carrito", carrito, { path: '/' })
+            if(carritoNew[idDel].cantidad < 1){
+                carritoNew.splice(idDel, 1);
+                setCookie("carrito", carritoNew, { path: '/' })
                 window.location.href="http://localhost:3000/carrito"
             }
         }
         llamar()
-        setCookie("carrito", carrito, { path: '/' })
-        setCantidadP(cantidadP = carrito[idDel].cantidad)
-        setSubtotalP(subtotalP = carrito[idDel].cantidad * carrito[idDel].precio)
+        setCookie("carrito", carritoNew, { path: '/' })
+        setCantidadP(cantidadP = carritoNew[idDel].cantidad)
+        setSubtotalP(subtotalP = carritoNew[idDel].cantidad * carrito[idDel].precio)
         //actTotal()
         
     }
 
-    function buscarPro(){
+    function buscarPro(carr){
         let ind = null
-        carrito.forEach((prod, indice) => {
-            if(prod.id === id_prod){
-                ind = indice
+        carr.forEach((prod, indice) => {
+           
+            if(prod._id === id_prod){
+                 ind = indice
             }
         })
-
         return ind;
     }
 

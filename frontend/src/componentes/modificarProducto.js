@@ -21,7 +21,7 @@ const ModificarProducto = () => {
         formData.append('imagen', fileField);
         
 
-        fetch('http://localhost:5050/productos', {
+        /*fetch('http://localhost:5050/productos', {
         method: 'POST',
         body: formData
         })
@@ -31,7 +31,7 @@ const ModificarProducto = () => {
         })
         .catch((error) => {
             console.error('Error:', error);
-        });
+        });*/
 
         await axios.post("https://localhost:5050/productos", formData)
         .then(response => {

@@ -31,9 +31,9 @@ const ListaProductoCliente = ({id}) => {
         } else {
             console.log("no existe producto")
             let pr = {
-                id: id_prod,
+                _id: id_prod,
                 nombre: evn.target.dataset.nombre,
-                precio: evn.target.dataset.valor,
+                valor: parseInt(evn.target.dataset.valor),
                 cantidad:1,
                 imagen:evn.target.dataset.imagen
             }

@@ -1,10 +1,9 @@
 import logopri from "../assets/img/logoDevelopers.svg";
 import  "../assets/css/login.css"
 import {useCookies} from "react-cookie"
-//import {cambiarVistaInicio} from "../App.js"
 
 function Login () {
-  const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role']);
+  const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role', "name_user"]);
 
   function loguear (e) {
     e.preventDefault();
@@ -22,10 +21,9 @@ function Login () {
     .then(datos => {
       console.log(datos)
       if(!datos.error){
-        //cambiarVistaInicio(datos)
-        console.log(datos.rol)
         setCookie("id_user", datos._id, { path: '/' })
         setCookie("role", datos.rol, { path: '/' })
+        setCookie("name_user", datos.nombre, { path: '/' })
         if(datos.rol === "admin"){
           window.location.href="http://localhost:3000/"
         } else {
