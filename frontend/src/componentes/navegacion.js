@@ -23,7 +23,8 @@ export const Navegacion = ({ rol, id_user }) => {
               <Route path="/crear_productos" element={<ModificarProducto />} />
               {/*<Route path="/modificar_productos/:id" element={<ModificarProducto id={Route.id} />} />*/}
               <Route path="/lista_ventas" element={<ListaVentas />} />
-              <Route path="/crear_usuario" element={<ListaVentas />} />
+              <Route path="/lista_productos_admin" element={<ListaUsuariosAdmin />} />
+              <Route path="/crear_usuario" element={<CearUsuario />} />
               </>
               ) : (
               <>

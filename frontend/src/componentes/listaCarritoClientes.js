@@ -77,6 +77,7 @@ function ListaCarrito() {
         if (window.confirm("¿Esta seguro de vaciar el carrito?")) {
             setCookie("carrito", [], { path: '/' })
             setCampo(campo = <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>)
+            setTotalfin(0)
         }
 
     }

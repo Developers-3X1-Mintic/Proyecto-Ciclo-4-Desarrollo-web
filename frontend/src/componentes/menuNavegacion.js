@@ -37,7 +37,11 @@ export const MenuNavegacion = ({ rol }) => {
                                     <Link className="nav-link boton-menu" to="/lista_ventas">Ventas</Link>
                                     <NavDropdown title="Productos" id="basic-nav-dropdown" className="desplegador-menu">
                                         <Link className="dropdown-item" to={"/lista_productos_admin"}>Lista de productos</Link>
-                                        <Link className="dropdown-item" to={"/crear_usuario"}>Producto Nuevo</Link>
+                                        <Link className="dropdown-item" to={"/crear_productos"}>Producto Nuevo</Link>
+                                    </NavDropdown>
+                                    <NavDropdown title="Usuarios" id="basic-nav-dropdown" className="desplegador-menu">
+                                        <Link className="dropdown-item" to={"/lista_usuarios"}>Lista de usuarios</Link>
+                                        <Link className="dropdown-item" to={"/crear_usuario"}>Usuario Nuevo</Link>
                                     </NavDropdown>
                                 </>
                                 ) : (
