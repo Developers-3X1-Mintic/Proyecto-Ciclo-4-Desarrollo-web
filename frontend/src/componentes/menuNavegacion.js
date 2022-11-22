@@ -6,9 +6,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const MenuNavegacion = ({ rol }) => {
-    const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role']);
+    const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role', 'name_user']);
 
     function salir() {
         if (window.confirm("esta seguro de salir") == true) {
@@ -45,11 +47,12 @@ export const MenuNavegacion = ({ rol }) => {
                                 </>
                                 )}
                                 <Nav.Link className="boton-menu" onClick={salir}>Salir</Nav.Link>
+                                <div className="ms-5 d-flex align-items-center pb-1"><FontAwesomeIcon icon={faUser} className="me-2" /> {cookies.name_user}</div>
                             </Nav>
                         ) : (
                             <Nav className="me-auto">
-                                <Nav.Link href="/">Productos</Nav.Link>
-                                <Nav.Link href="/carrito">Carrito</Nav.Link>
+                                <Link className="nav-link boton-menu" to="/">Login</Link>
+                                <Link className="nav-link boton-menu" to="/registrar">Registrar</Link>
                             </Nav>
                         )}
                     </Navbar.Collapse>
