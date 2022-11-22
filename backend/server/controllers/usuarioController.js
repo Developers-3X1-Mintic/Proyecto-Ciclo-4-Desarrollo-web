@@ -1,5 +1,3 @@
-
-
 import {modeloUsuario} from "../models/usuario.js"
 import  bcrypt from "bcryptjs"
 
@@ -17,9 +15,10 @@ export const obtenerUsuarios = async (req, resp) => {
 
 export const crearUsuarios = async (req, resp) => { 
     try {
-        const {nombre, email, password, rol} = req.body
+        const {nombre, email, tempassword, rol} = req.body
+        let password = await bcrypt.hash(tempassword, 10)
         
-        const newUsuario = new modeloUsuario({ nombre, email, password, rol })
+        const newUsuario = await new modeloUsuario({ nombre, email, password, rol })
 
         await newUsuario.save()
         return resp.json(newUsuario)
@@ -31,7 +30,11 @@ export const crearUsuarios = async (req, resp) => {
 
 export const actualizarUsuario = async (req, resp) => { 
     try {
-        const usuario = await modeloUsuario.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        let user = req.body
+        if(user.newpassword !== undefined){
+            user.password = await bcrypt.hash(user.newpassword, 10)
+        }
+        const usuario = await modeloUsuario.findByIdAndUpdate(req.params.id, user, {new: true})
         return resp.json(usuario)
     } catch (error) {
         return resp.status(500).json({'Error' : error.message})

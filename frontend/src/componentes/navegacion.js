@@ -1,19 +1,23 @@
 import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "./login.js"
-import { ListaProductosAdmin } from "./listaProductosAdmin.js"
-import { ModificarProducto } from "./modificarProducto.js"
-import { ListaVentas } from "./listaVentas.js"
+import { RegistrarUsuario} from "./registrarUsuario.js"
+
+import { DashBoard } from "./admin/dashBoard.js"
+import { ListaProductosAdmin } from "./admin/listaProductosAdmin.js"
+import { ModificarProducto } from "./admin/modificarProducto.js"
+import { ListaVentas } from "./admin/listaVentas.js"
+import { ListaUsuariosAdmin } from "./admin/listaUsuariosAdmin.js"
+import { CearUsuario } from "./admin/crearUsuario.js"
+import { EditarUsuario } from "./admin/editarUsuario.js"
+
 import { ListaProductoCliente } from "./listaProductosClientes.js"
 import { ListaCarrito } from "./listaCarritoClientes.js"
-
-import { CearUsuario } from "./crearUsuario.js"
-import { ListaUsuariosAdmin } from "./listaUsuariosAdmin.js"
 
 
 export const Navegacion = ({ rol, id_user }) => {
   return (
-    <section className={rol === "admin" || rol === "user" ? ("w-100 fondo-blanco") : ("w-100")}>
+    <section className="w-100">
       <div className="container">
         <div className="row p-5"></div>
         <Routes>
@@ -21,13 +25,14 @@ export const Navegacion = ({ rol, id_user }) => {
             <Fragment>
               {rol === "admin" ? (
               <>
-              <Route path="/" element={<div>Inicio</div>} />
+              <Route path="/" element={<DashBoard />} />
               <Route path="/lista_productos_admin" element={<ListaProductosAdmin />} />
               <Route path="/crear_productos" element={<ModificarProducto />} />
-              {/*<Route path="/modificar_productos/:id" element={<ModificarProducto id={Route.id} />} />*/}
+              <Route path="/modificar_productos/:id" element={<ModificarProducto id={Route.id} />} />
               <Route path="/lista_ventas" element={<ListaVentas />} />
-              <Route path="/lista_productos_admin" element={<ListaUsuariosAdmin />} />
+              <Route path="/lista_usuarios" element={<ListaUsuariosAdmin />} />
               <Route path="/crear_usuario" element={<CearUsuario />} />
+              <Route path="/editar_usuario/:id" element={<EditarUsuario />} />
               </>
               ) : (
               <>
@@ -39,6 +44,7 @@ export const Navegacion = ({ rol, id_user }) => {
           ) : (
             <Fragment>
               <Route path="/" element={< Login />} />
+              <Route path="/registrar" element={< RegistrarUsuario />} />
             </Fragment>
           )}
         </Routes>

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 
-import { srvBck } from '../constantes.js'
+import { srvBck, srvFrt } from '../constantes.js'
 import { useCookies } from "react-cookie"
 
 function ListaCarrito() {
@@ -25,11 +25,11 @@ function ListaCarrito() {
 
         carritoNew.forEach ((producto) => {
 
-            fetch("http://localhost:5050/producto/" + producto._id)
+            fetch(srvBck + "/producto/" + producto._id)
             .then(resp => resp.json())
             .then(datos => {
                 datos.stock -= producto.cantidad
-                fetch('http://localhost:5050/producto/' + producto._id, {
+                fetch(srvBck + '/producto/' + producto._id, {
                     method: 'PUT',
                     headers:{'Content-Type':'application/json'},
                     body: JSON.stringify(datos)
@@ -47,7 +47,7 @@ function ListaCarrito() {
             items: carritoNew
         }
 
-        fetch('http://localhost:5050/ventas/', {
+        fetch(srvBck +'/ventas/', {
         method: 'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify(venta)
@@ -55,7 +55,7 @@ function ListaCarrito() {
         .then(resp => resp.json())
         .then(datos => {
             setCookie("carrito", [], { path: '/' })
-            window.location.href = "http://localhost:3000/"
+            window.location.href = srvFrt + "/"
         })
     }
 

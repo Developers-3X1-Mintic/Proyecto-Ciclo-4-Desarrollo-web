@@ -1,4 +1,4 @@
-import ex from "express"
+import ex, { application } from "express"
 import productoRoutes from "./routes/productos_routes.js"
 import fileUpload from "express-fileupload";
 import routerVenta from "./routes/ventas_routers.js";
@@ -21,6 +21,6 @@ app.use(cors())
 app.use(productoRoutes)
 app.use(routerVenta)
 app.use(routerUsuario)
+app.use(ex.static("../frontend/build"))
 
-//app.use(ex.static("../frontend/build"))
 export default app

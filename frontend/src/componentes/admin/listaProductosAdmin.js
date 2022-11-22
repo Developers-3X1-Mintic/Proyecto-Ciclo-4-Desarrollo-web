@@ -1,18 +1,25 @@
 import { useState } from "react";
-import "../assets/css/StyleCuerpo.css"
+import "../../assets/css/StyleCuerpo.css"
 import { ProductoAdminList } from "./child/productoAdminList.js";
+import {srvBck, srvFrt} from "../../constantes.js"
 
 
 const ListaProductosAdmin = () => {
     let [datosProd, setDatos] = useState("")
-
-    fetch("http://localhost:5050/productos")
-    .then(resp => resp.json())
-    .then(datosw => {
-        setDatos(datosProd = datosw.map(dato => {
-            return <ProductoAdminList producto={dato} />
-       }))
-    })
+    
+    const editar = (idProd) => {
+        window.location.href= srvFrt + "/modificar_productos/" + idProd
+    }
+    
+    if(datosProd === ""){
+        fetch( srvBck + "/productos")
+        .then(resp => resp.json())
+        .then(datosw => {
+            setDatos(datosProd = datosw.map((dato, i) => {
+                return <ProductoAdminList key={i} producto={dato} toeditar={editar} />
+        }))
+        })
+    }
 
     return (
         <div>
@@ -20,7 +27,7 @@ const ListaProductosAdmin = () => {
                 <h1 className="text-center">Lista de productos</h1>
             </div>
             <div className="p-3">
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                         <th scope="col" className="text-center">Miniaura</th>
@@ -30,7 +37,7 @@ const ListaProductosAdmin = () => {
                         <th scope="col" className="text-center">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>{datosProd}</tbody>
+                    <tbody><>{datosProd}</></tbody>
                     
                 </table>
             </div>

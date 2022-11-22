@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { faTrashAlt, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {srvBck} from '../../constantes.js'
+import {srvFrt} from '../../constantes.js'
 import {useCookies} from "react-cookie"
 
 
@@ -29,7 +29,7 @@ function ItemCarrito (props) {
             carrito.splice(idDel, 1);
             
             setCookie("carrito", carrito, { path: '/' })
-            window.location.href="http://localhost:3000/carrito"
+            window.location.href= srvFrt + "/carrito"
         }
     }
 
@@ -47,7 +47,7 @@ function ItemCarrito (props) {
             if(carritoNew[idDel].cantidad < 1){
                 carritoNew.splice(idDel, 1);
                 setCookie("carrito", carritoNew, { path: '/' })
-                window.location.href="http://localhost:3000/carrito"
+                window.location.href= srvFrt + "/carrito"
             }
         }
         //llamar()

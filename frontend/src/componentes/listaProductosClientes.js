@@ -38,7 +38,6 @@ const ListaProductoCliente = ({id}) => {
                 imagen:evn.target.dataset.imagen
             }
             carrito.push(pr)
-            //console.log(carrito)
 
             setCookie("carrito", carrito, { path: '/' })
         }

@@ -1,6 +1,8 @@
 import logopri from "../assets/img/logoDevelopers.svg";
 import  "../assets/css/login.css"
 import {useCookies} from "react-cookie"
+import {srvBck, srvFrt} from "../constantes.js"
+import { Link } from "react-router-dom"
 
 function Login () {
   const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role', "name_user"]);
@@ -14,7 +16,7 @@ function Login () {
       alert("Ingrese los datos")
       return
     }
-    let url = "http://localhost:5050/usuario/" + email + "/" + pass
+    let url = srvBck + "/usuario/" + email + "/" + pass
     
     fetch(url)
     .then(resp => resp.json())
@@ -25,9 +27,9 @@ function Login () {
         setCookie("role", datos.rol, { path: '/' })
         setCookie("name_user", datos.nombre, { path: '/' })
         if(datos.rol === "admin"){
-          window.location.href="http://localhost:3000/"
+          window.location.href= srvFrt + "/"
         } else {
-          window.location.href="http://localhost:3000/"
+          window.location.href= srvFrt + "/"
         }
         
       } else {
@@ -66,8 +68,7 @@ function Login () {
           <div className="text-center mt-5 pt-2">
           
               <button className="btn btn-primary btn-lg btn-login" onClick={loguear}>Ingresar</button> 
-            <p className="small mt-5 pt-1 mb-0">¿No tienes una cuenta? <a href="#!"
-                className="link-registro">Registrar</a></p>
+            <p className="small mt-5 pt-1 mb-0">¿No tienes una cuenta? <Link className="link-registro" to={"registrar"}>Registrar</Link></p>
           </div>
           
               </form>

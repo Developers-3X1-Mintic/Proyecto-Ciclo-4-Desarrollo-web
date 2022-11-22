@@ -1,12 +1,13 @@
 import { useState } from "react";
 import {ItemVenta} from "./child/itemVenta.js"
+import {srvBck} from "../../constantes.js"
 
 function ListaVentas() {
     
     let [datosVentas, setDatos] = useState("")
     let [total, setTotal] = useState(0)
     let valorTotal = 0
-    fetch("http://localhost:5050/ventas")
+    fetch( srvBck + "/ventas" )
     .then(res=>res.json())
     .then((datos)=>{
         

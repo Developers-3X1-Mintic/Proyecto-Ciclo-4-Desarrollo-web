@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {srvFrt} from "../constantes.js"
 
 export const MenuNavegacion = ({ rol }) => {
     const [cookies, setCookie, removeCookie] = useCookies(['id_user', 'role', 'name_user']);
@@ -16,7 +17,7 @@ export const MenuNavegacion = ({ rol }) => {
         if (window.confirm("esta seguro de salir") == true) {
             removeCookie(['id_user'], { path: "/" })
             removeCookie(['role'], { path: "/" })
-            window.location.href = "http://localhost:3000/"
+            window.location.href = srvFrt + "/"
         }
     }
     
@@ -34,7 +35,7 @@ export const MenuNavegacion = ({ rol }) => {
                                 {rol === "admin" ? (
                                 <>
                                     <Link className="nav-link boton-menu" to={"/"}>Dashboard</Link>
-                                    <Link className="nav-link boton-menu" to="/lista_ventas">Ventas</Link>
+                                    <Link className="nav-link boton-menu" to={"/lista_ventas"}>Ventas</Link>
                                     <NavDropdown title="Productos" id="basic-nav-dropdown" className="desplegador-menu">
                                         <Link className="dropdown-item" to={"/lista_productos_admin"}>Lista de productos</Link>
                                         <Link className="dropdown-item" to={"/crear_productos"}>Producto Nuevo</Link>
