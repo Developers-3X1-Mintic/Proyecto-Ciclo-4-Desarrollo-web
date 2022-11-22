@@ -7,6 +7,9 @@ import { ListaVentas } from "./listaVentas.js"
 import { ListaProductoCliente } from "./listaProductosClientes.js"
 import { ListaCarrito } from "./listaCarritoClientes.js"
 
+import { CearUsuario } from "./crearUsuario.js"
+import { ListaUsuariosAdmin } from "./listaUsuariosAdmin.js"
+
 
 export const Navegacion = ({ rol, id_user }) => {
   return (
