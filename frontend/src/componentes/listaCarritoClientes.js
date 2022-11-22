@@ -20,6 +20,11 @@ function ListaCarrito() {
     const handleComprar = () => {
         setShow(false)
         let carritoNew = cookies.carrito
+
+        carritoNew.forEach ((el, i) => {
+            delete carritoNew[i].imagen
+        })
+
         /*Aquí se debería validar si la cantidad de objetos en el carrito corresponden al stock disponible*/
         let venta = {
             cliente:{
@@ -29,8 +34,11 @@ function ListaCarrito() {
             items: carritoNew
         }
 
+        console.log(venta)
+
         fetch('http://localhost:5050/ventas/', {
         method: 'POST',
+        headers:{'Content-Type':'application/json'},
         body: JSON.stringify(venta)
         })
         .then(resp => resp.json())

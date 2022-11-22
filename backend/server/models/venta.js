@@ -3,7 +3,7 @@ import Mongo from "mongoose"
 const ventaSchema = new Mongo.Schema({
     fecha:{type:Date,default:Date.now},
     cliente:{
-        id: Mongo.Types.ObjectId,
+        id: String,
         nombre:String
     },
 
