@@ -14,7 +14,10 @@ function ListaCarrito() {
     let actTotal = null
     
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        actualizarTotal()
+        setShow(true)    
+    }
     
     const handleComprar = () => {
         setShow(false) //esto es para ocultar la ventana emergente
@@ -34,7 +37,6 @@ function ListaCarrito() {
                 .then(resp => resp.json())
                 .then(datos => console.log(datos))
             })
-            //delete carritoNew[i].imagen
         })
        
         let venta = {
@@ -51,7 +53,10 @@ function ListaCarrito() {
         body: JSON.stringify(venta)
         })
         .then(resp => resp.json())
-        .then(datos => console.log(datos))
+        .then(datos => {
+            setCookie("carrito", [], { path: '/' })
+            window.location.href = "http://localhost:3000/"
+        })
     }
 
     let [campo, setCampo] = useState("")
@@ -65,7 +70,7 @@ function ListaCarrito() {
     carrito.forEach(element => {
         tot += element.valor * element.cantidad
     });
-    const [total, setTotal] = useState(tot);
+    const [totalFin, setTotalfin] = useState(tot);
     
 
     const deleteCarrito = (acc) => {
@@ -76,14 +81,15 @@ function ListaCarrito() {
 
     }
 
-    const actualizarTotal = () => {
+    function actualizarTotal () {
         let productos = cookies.carrito
         let totalNew = 0
 
         productos.forEach((elemt) => {
-            totalNew += elemt.precio*elemt.cantidad
+            totalNew += elemt.valor*elemt.cantidad
         })
-        setTotal(total = totalNew)
+        console.log(totalNew)
+        setTotalfin(totalNew)
     }
 
     return (
@@ -114,13 +120,13 @@ function ListaCarrito() {
                                 cantidad={prod.cantidad}
                                 idele={prod._id} />)
                         })}
-                        <tr><td colSpan={4}></td><td>Total</td><td className="text-end"><b>{total}</b></td><td></td></tr>
+                        <tr><td colSpan={4}></td><td>Total</td><td className="text-end"><b>{totalFin}</b></td><td></td></tr>
                     </tbody>
                 </Table>
             </div>
             <div className="text-end mb-5">
 
-                <button type="button" onClick={actualizarTotal} className="btn btn-dark">Actualizar carrito</button>
+                <button type="button" onClick={() => actualizarTotal()} className="btn btn-dark">Actualizar carrito</button>
                 <button type="button" onClick={deleteCarrito} className="btn btn-dark ms-3">Vaciar carrito</button>
                 <Button type="button" variant="dark" onClick={handleShow} className="ms-3">Finalizar Compra</Button>
 
@@ -128,7 +134,7 @@ function ListaCarrito() {
                     <Modal.Header closeButton>
                         <Modal.Title>Pagar</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>tu compra es por un valor de {total}</Modal.Body>
+                    <Modal.Body>tu compra es por un valor de {totalFin}</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Cancelar

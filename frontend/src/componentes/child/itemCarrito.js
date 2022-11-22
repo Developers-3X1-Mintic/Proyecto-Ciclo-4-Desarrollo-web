@@ -14,7 +14,7 @@ function ItemCarrito (props) {
     let id_prod = props.idele
     let [imagenP, setImagenP] = useState(props.imagen)
     let [nombreP, setNombreP] = useState(props.nombre)
-    let [precioP, setPrecioP] = useState(props.valor)
+    let [precioP, setPrecioP] = useState(props.precio)
     let [cantidadP, setCantidadP] = useState(props.cantidad)
     let [subtotalP, setSubtotalP] = useState(props.precio * props.cantidad)
 
