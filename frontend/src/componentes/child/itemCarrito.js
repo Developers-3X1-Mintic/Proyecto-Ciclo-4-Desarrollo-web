@@ -37,8 +37,9 @@ function ItemCarrito (props) {
     const setCarrito = (acc) => {
         let carritoNew = cookies.carrito
         let idDel = buscarPro(carritoNew)
-        console.log(carritoNew[idDel])
+        
         if(acc === "mas"){
+            console.log("aumentar")
             carritoNew[idDel].cantidad += 1
         } else {
             carritoNew[idDel].cantidad -= 1
@@ -49,11 +50,11 @@ function ItemCarrito (props) {
                 window.location.href="http://localhost:3000/carrito"
             }
         }
-        llamar()
+        //llamar()
+        console.log(carritoNew)
         setCookie("carrito", carritoNew, { path: '/' })
         setCantidadP(cantidadP = carritoNew[idDel].cantidad)
-        setSubtotalP(subtotalP = carritoNew[idDel].cantidad * carrito[idDel].precio)
-        //actTotal()
+        setSubtotalP(subtotalP = carritoNew[idDel].cantidad * carritoNew[idDel].valor)
         
     }
 

@@ -112,7 +112,7 @@ function ListaCarrito() {
                                 imagen={prod.imagen}
                                 nombre={prod.nombre}
                                 cantidad={prod.cantidad}
-                                idele={prod.id} />)
+                                idele={prod._id} />)
                         })}
                         <tr><td colSpan={4}></td><td>Total</td><td className="text-end"><b>{total}</b></td><td></td></tr>
                     </tbody>
