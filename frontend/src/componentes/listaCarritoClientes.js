@@ -7,8 +7,6 @@ import Table from 'react-bootstrap/Table';
 import { srvBck } from '../constantes.js'
 import { useCookies } from "react-cookie"
 
-
-
 function ListaCarrito() {
     const [cookies, setCookie, removeCookie] = useCookies(['carrito', 'name_user', 'id_user']);
     const [show, setShow] = useState(false);
@@ -17,15 +15,28 @@ function ListaCarrito() {
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     const handleComprar = () => {
-        setShow(false)
-        let carritoNew = cookies.carrito
+        setShow(false) //esto es para ocultar la ventana emergente
+        let carritoNew = cookies.carrito //obteniendo carrito de compras
 
-        carritoNew.forEach ((el, i) => {
-            delete carritoNew[i].imagen
+        carritoNew.forEach ((producto) => {
+
+            fetch("http://localhost:5050/producto/" + producto._id)
+            .then(resp => resp.json())
+            .then(datos => {
+                datos.stock -= producto.cantidad
+                fetch('http://localhost:5050/producto/' + producto._id, {
+                    method: 'PUT',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify(datos)
+                })
+                .then(resp => resp.json())
+                .then(datos => console.log(datos))
+            })
+            //delete carritoNew[i].imagen
         })
-
-        /*Aquí se debería validar si la cantidad de objetos en el carrito corresponden al stock disponible*/
+       
         let venta = {
             cliente:{
                 id: cookies.id_user,
@@ -33,8 +44,6 @@ function ListaCarrito() {
             },
             items: carritoNew
         }
-
-        console.log(venta)
 
         fetch('http://localhost:5050/ventas/', {
         method: 'POST',
@@ -74,7 +83,6 @@ function ListaCarrito() {
         productos.forEach((elemt) => {
             totalNew += elemt.precio*elemt.cantidad
         })
-        console.log(totalNew)
         setTotal(total = totalNew)
     }
 
@@ -112,7 +120,7 @@ function ListaCarrito() {
             </div>
             <div className="text-end mb-5">
 
-                <button type="button" onClick={actualizarTotal} className="btn btn-dark">Actulizar carrito</button>
+                <button type="button" onClick={actualizarTotal} className="btn btn-dark">Actualizar carrito</button>
                 <button type="button" onClick={deleteCarrito} className="btn btn-dark ms-3">Vaciar carrito</button>
                 <Button type="button" variant="dark" onClick={handleShow} className="ms-3">Finalizar Compra</Button>
 
@@ -135,8 +143,5 @@ function ListaCarrito() {
     )
 
 }
-
-
-
 
 export { ListaCarrito }

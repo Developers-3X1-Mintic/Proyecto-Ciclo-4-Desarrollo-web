@@ -18,7 +18,7 @@ const ListaProductoCliente = ({id}) => {
         }
         let indice = null
         carrito.forEach( (element, ind) => {
-            if(element.id === id_prod){
+            if(element._id === id_prod){
                 indice = ind
             }
         });
