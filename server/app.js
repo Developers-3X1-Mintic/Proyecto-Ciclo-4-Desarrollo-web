@@ -21,6 +21,6 @@ app.use(cors())
 app.use(productoRoutes)
 app.use(routerVenta)
 app.use(routerUsuario)
-app.use(ex.static("../frontend/build"))
+app.use(ex.static("./src/build"))
 
 export default app
